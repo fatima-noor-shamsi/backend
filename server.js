@@ -1,16 +1,16 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
+import express from 'express';
+import cors from 'cors';
+
 const app = express();
 
-// Connect to MongoDB Atlas
-mongoose.connect(process.env.MONGO_URL, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => console.log(" Connected to MongoDB Atlas"))
-  .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// Simple test route
-app.get('/', (req, res) => {
-  res.send('Backend is working!');
+
+
+app.use(cors({
+  origin: 'https://react-project-tau-olive.vercel.app/'
+}));
+
+app.use(express.json());
+app.post('/AdminReg', (req, res) => {
+    // your logic
 });
-
-app.listen(5000, () => console.log('Server running on port 5000'));
